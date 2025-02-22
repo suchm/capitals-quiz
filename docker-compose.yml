@@ -1,0 +1,54 @@
+version: '3.7'
+
+services:
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: capitals-quiz-backend
+        ports:
+            - "8000:80"
+        volumes:
+          - ./backend:/app/backend
+        depends_on:
+            - db
+        networks:
+            - app
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        container_name: capitals-quiz-frontend
+        ports:
+            - 5173:5173
+        volumes:
+            - ./frontend:/app/frontend
+            - /app/frontend/node_modules
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        depends_on:
+            - backend
+        networks:
+            - app
+
+    db:
+        image: mysql:8.0.37
+        container_name: capitals-quiz-db
+        env_file: ./backend/.env
+        ports:
+            - "3337:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: "password"
+            MYSQL_DATABASE: "capitals-quiz"
+            MYSQL_USER: "laravel"
+            MYSQL_PASSWORD: "password"
+        networks:
+            - app
+
+networks:
+    app:
+        driver: bridge
+
+
+
