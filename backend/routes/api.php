@@ -26,4 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 });
 
 // Include v1 routes
-Route::prefix('v1')->group(base_path('routes/api_v1.php'));
+Route::prefix('v1')->group(function () {
+    require_once base_path('routes/api_v1.php');
+});
+

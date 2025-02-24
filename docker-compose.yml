@@ -9,9 +9,10 @@ services:
         ports:
             - "8000:80"
         volumes:
-          - ./backend:/app/backend
+            - ./backend:/app/backend
         depends_on:
             - db
+            - db-test
         networks:
             - app
 
@@ -32,6 +33,7 @@ services:
         networks:
             - app
 
+    # Main MySQL Database (Development)
     db:
         image: mysql:8.0.37
         container_name: capitals-quiz-db
@@ -43,6 +45,27 @@ services:
             MYSQL_DATABASE: "capitals-quiz"
             MYSQL_USER: "laravel"
             MYSQL_PASSWORD: "password"
+        volumes:
+            - db_data:/var/lib/mysql
+            - ./backend/docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+        networks:
+            - app
+
+    # MySQL Test Database
+    db-test:
+        image: mysql:8.0.37
+        container_name: capitals-quiz-test-db
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: "test_password"
+            MYSQL_DATABASE: "capitals-quiz-test"
+            MYSQL_USER: "test_laravel"
+            MYSQL_PASSWORD: "test_password"
+        ports:
+            - "3338:3306"  # Avoid conflict with main MySQL
+        volumes:
+            - db_test_data:/var/lib/mysql
+            - ./backend/docker/mysql/init-test.sql:/docker-entrypoint-initdb.d/init-test.sql
         networks:
             - app
 
@@ -50,5 +73,6 @@ networks:
     app:
         driver: bridge
 
-
-
+volumes:
+    db_data:
+    db_test_data:
