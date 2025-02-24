@@ -102,5 +102,6 @@ docker exec -it capitals-quiz-backend vendor/bin/phpunit
 - Implemented try and catch methods in backend allowing requests to fail gracefully.
 - Cached API request to limit the number of calls to the endpoint.
 - Added retry attempts to API request in case it fails.
+- Applied throttling to login and register to handle brute force attacks
 
 
