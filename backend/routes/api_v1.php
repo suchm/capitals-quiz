@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\v1\CountriesCapitalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/welcome', function () {
-        return "Hello";
-    });
+    Route::get('/countries/capital', [CountriesCapitalController::class, 'index']);
 });

@@ -1,23 +1,28 @@
 import PageNav from "../components/PageNav.tsx";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 
 function Layout() {
     return (
         <>
-            <div className="min-h-screen m-10 bg-cover bg-center
-                    bg-[linear-gradient(rgba(36,42,46,0.9),rgba(36,42,46,0.9)),url('/capital-cities-bg.png')]
-                    px-20 py-10 mx-0 my-0">
+            {/* Container with background image */}
+            <div className="relative min-h-screen bg-cover bg-center
+                bg-[linear-gradient(rgba(36,42,46,0.9),rgba(36,42,46,0.9)),url('/map-bg.jpg')]">
 
-                <header>
+                {/* PageNav with padding on desktop */}
+                <header className="absolute top-0 left-0 w-full z-10 px-4 py-3 md:px-10 md:py-4">
                     <PageNav />
                 </header>
 
-                <main>
-                    <Outlet />
-                </main>
+                {/* Main Content */}
+                <div className="pt-24 pb-10 px-10">
+                    <main>
+                        <Outlet />
+                    </main>
+                </div>
             </div>
 
+            {/* Footer */}
             <Footer />
         </>
     );

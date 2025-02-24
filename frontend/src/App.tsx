@@ -5,6 +5,8 @@ import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import Quiz from "./pages/Quiz.tsx";
 import Layout from "./pages/Layout.tsx";
+import {AuthProvider} from "./contexts/AuthContext.tsx";
+import {QuizProvider} from "./contexts/QuizContext.tsx";
 
 const router = createBrowserRouter([
     {
@@ -31,7 +33,13 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+      <AuthProvider>
+          <QuizProvider>
+                <RouterProvider router={router} />
+          </QuizProvider>
+      </AuthProvider>
+  );
 }
 
 export default App

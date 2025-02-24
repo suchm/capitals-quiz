@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'countries_capital' => [
+        'api_endpoint' => env('COUNTRIES_CAPITAL_API_ENDPOINT'),
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
