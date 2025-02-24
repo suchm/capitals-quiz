@@ -89,4 +89,13 @@ docker exec -it capitals-quiz-backend vendor/bin/phpunit
 - You can end the quiz at any time by clicking the "End quiz" button.
 - Once ended you can restart the quiz by clicking the "Restart quiz" button.
 
+## Security strategies
+
+- Validating and sanitising inputs.
+- Implementing Laravel Sanctum for API authentication.
+- Handling errors in the frontend to providing user friendly messages.
+- Implemented try and catch methods in backend allowing requests to fail gracefully.
+- Cached API request to limit the number of calls to the endpoint.
+- Added retry attempts to API request in case it fails.
+
 
