@@ -1,4 +1,4 @@
-<p align="center"><a href="https://michaelsuch.co.uk/wp-content/uploads/2025/02/cq-logo.png" target="_blank"><img src="https://michaelsuch.co.uk/wp-content/uploads/2025/02/cq-logo.png" width="400" alt="Capitals quiz Logo"></a></p>
+<p align="center"><a href="https://michaelsuch.co.uk/wp-content/uploads/2025/02/cq-logo.png" target="_blank"><img src="https://michaelsuch.co.uk/wp-content/uploads/2025/02/cq-logo-black.png" width="400" alt="Capitals quiz Logo"></a></p>
 
 # Capitals Quiz
 
