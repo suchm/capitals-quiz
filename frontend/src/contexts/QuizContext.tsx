@@ -123,17 +123,26 @@ function QuizProvider({ children }) {
             .map((c) => c.capital)
             .filter((capital) => capital !== question.capital);
 
-        // Add 2 incorrect choices
+        // Ensure there are at least 2 incorrect choices
+        while (incorrectChoices.length < 2) {
+            incorrectChoices.push("Random Placeholder"); // Fallback choice if needed
+        }
+
+        // Add exactly 2 incorrect choices
         incorrectChoices = incorrectChoices.sort(() => 0.5 - Math.random()).slice(0, 2);
 
-        // Include correct answer
+        // Include the correct answer
         const choices = [...incorrectChoices, question.capital];
 
-        // Shuffle the choices
-        const shuffledChoices = choices.sort(() => Math.random() - 0.5);
+        // Fisher-Yates Shuffle
+        for (let i = choices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [choices[i], choices[j]] = [choices[j], choices[i]];
+        }
 
-        dispatch({ type: "quiz/newQuestion", payload: { question, choices: shuffledChoices } });
+        dispatch({ type: "quiz/newQuestion", payload: { question, choices } });
     }
+
 
 
     useEffect(() => {
