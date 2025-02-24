@@ -53,6 +53,11 @@ DB_DATABASE=capitals-quiz
 DB_USERNAME=root
 DB_PASSWORD=password
 ```
+Build docker container:
+
+```bash
+docker-compose up --build -d
+``` 
 Migrate database:
 
 ```bash
