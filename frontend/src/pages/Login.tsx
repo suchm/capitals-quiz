@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button.tsx";
 import { useAuth } from "../contexts/AuthContext.tsx";
 
@@ -74,6 +74,7 @@ function Login() {
                         </Button>
                     </div>
                 </form>
+                <p className="text-xl mt-6">Don't yet have an account? <Link className="text-blue-600 underline" to="/register">Click here to register</Link></p>
             </section>
         </main>
     );

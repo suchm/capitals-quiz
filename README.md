@@ -31,6 +31,12 @@ Clone the git files from suchm/capitals-quiz to a local repository.
 
 cd into the repository then run the following commands:
 
+Install dependencies in capitals-quiz/frontend:
+
+```bash
+composer install
+```
+
 Install dependencies in capitals-quiz/backend:
 
 ```bash
