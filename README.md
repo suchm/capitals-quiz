@@ -43,7 +43,7 @@ Generate an encryption key
 ```bash
 php artisan key:generate
 ```
-Add your MySQL database configuration to the `.env` file. Update the below details to match your configuration:
+Add the MySQL database configuration to the `.env` file:
 
 ```bash
 DB_CONNECTION=mysql
@@ -53,6 +53,12 @@ DB_DATABASE=capitals-quiz
 DB_USERNAME=root
 DB_PASSWORD=password
 ```
+Add the following API key to the `.env` file:
+
+```bash
+COUNTRIES_CAPITAL_API_ENDPOINT=https://countriesnow.space/api/v0.1
+``` 
+
 Build docker container:
 
 ```bash
