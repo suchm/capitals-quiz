@@ -107,43 +107,35 @@ function QuizProvider({ children }) {
             return;
         }
 
-        // Filter out used countries
         const availableCountries = countriesList.filter(
             (country) => !usedCountries.has(country.country)
         );
 
         if (availableCountries.length === 0) return;
 
-        // Randomly select a country
-        const question =
-            availableCountries[Math.floor(Math.random() * availableCountries.length)];
+        // Select random country as current question
+        const question = availableCountries[Math.floor(Math.random() * availableCountries.length)];
 
-        // Get all incorrect choices
-        let incorrectChoices = countriesList
-            .map((c) => c.capital)
-            .filter((capital) => capital !== question.capital);
+        // Ensure exactly two unique incorrect choices
+        const incorrectChoices = countriesList
+            .filter((c) => c.capital !== question.capital)
+            .map((c) => c.capital);
 
-        // Ensure there are at least 2 incorrect choices
-        while (incorrectChoices.length < 2) {
-            incorrectChoices.push("Random Placeholder"); // Fallback choice if needed
-        }
+        const shuffledIncorrectChoices = shuffleArray(incorrectChoices).slice(0, 2);
 
-        // Add exactly 2 incorrect choices
-        incorrectChoices = incorrectChoices.sort(() => 0.5 - Math.random()).slice(0, 2);
-
-        // Include the correct answer
-        const choices = [...incorrectChoices, question.capital];
-
-        // Fisher-Yates Shuffle
-        for (let i = choices.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [choices[i], choices[j]] = [choices[j], choices[i]];
-        }
+        // Combine correct choice with incorrect choices
+        const choices = shuffleArray([question.capital, ...shuffledIncorrectChoices]);
 
         dispatch({ type: "quiz/newQuestion", payload: { question, choices } });
     }
 
-
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
 
     useEffect(() => {
         if (status === "active" && countriesList.length > 0) {
