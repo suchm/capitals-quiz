@@ -34,7 +34,7 @@ cd into the repository then run the following commands:
 Install dependencies in capitals-quiz/frontend:
 
 ```bash
-composer install
+npm install
 ```
 
 Install dependencies in capitals-quiz/backend:
